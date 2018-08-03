@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.chart__arc {
+  stroke-width: 1;
+  stroke: #fff;
+}
+
+.chart__label {
+  stroke: none;
+  fill: #fff;
+}
