@@ -83,7 +83,7 @@ class Chart extends Component {
 
   render() {
     return (
-      <figure ref={this.figure}>
+      <figure className="chart" ref={this.figure}>
         {/* chart */}
       </figure>  
      );

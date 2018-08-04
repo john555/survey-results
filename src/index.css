@@ -1,3 +1,9 @@
+* {
+  box-sizing: border-box;
+
+  --header-height: 7.5rem;
+}
+
 :root {
   font-size: 62.5%;
   background: #f5f5f5;
@@ -5,9 +11,10 @@
 
 body {
   margin: 0;
-  padding: 0;
+  padding: var(--header-height) 0 0;
   font-family: 'Roboto', sans-serif;
   font-size: 1.6rem;
+  color: #555;
 }
 
 .container {
@@ -21,6 +28,14 @@ body {
 .mainHeader {
   background: white;
   max-height: 6.5rem;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.05);
+  border-bottom: 0.1rem;
 }
 
 .mainHeader__title {
@@ -29,11 +44,62 @@ body {
   text-transform: uppercase;
   font-size: 2rem;
   margin: 0;
-  padding: 2rem 0;
 }
 
+/* Main */
+
+.mainContent {
+  padding: 4rem 0;
+}
+
+/* Question */
+
+.question {
+
+}
+
+.question__title {
+  font-weight: normal;
+  margin: 0;
+  font-size: 2rem;
+}
+
+.question__answers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 3.5rem 0 0;
+}
+
+/* Answer */
+.answer {
+  flex-basis: calc(50% - 1.5rem);
+  margin-bottom: 3rem;
+  background: white;
+  padding: 2.5rem;
+  border-radius: 0.5rem;
+  border: 0.1rem solid #efefef;
+}
+
+.answer__header {
+
+}
+
+.answer__title {
+  font-weight: normal;
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.answer__chartWrapper {
+  padding: 2rem 0 0;
+}
 
 /* Chart*/
+
+.chart {
+  margin: 0;
+}
 
 .chart__arc {
   stroke-width: 1;
