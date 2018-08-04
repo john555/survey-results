@@ -1,8 +1,39 @@
+:root {
+  font-size: 62.5%;
+  background: #f5f5f5;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.6rem;
 }
+
+.container {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Header */
+
+.mainHeader {
+  background: white;
+  max-height: 6.5rem;
+}
+
+.mainHeader__title {
+  font-weight: normal;
+  color: #3359df;
+  text-transform: uppercase;
+  font-size: 2rem;
+  margin: 0;
+  padding: 2rem 0;
+}
+
+
+/* Chart*/
 
 .chart__arc {
   stroke-width: 1;
@@ -13,3 +44,4 @@ body {
   stroke: none;
   fill: #fff;
 }
+

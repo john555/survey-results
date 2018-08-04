@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
-import PieChart from './Chart';
+import PieChart from './components/chart/Chart';
+import Header from './containers/Header';
+import Main from './containers/Main';
 
 const data = [
   {
@@ -25,8 +27,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Survey results</h1>
-        <PieChart data={ data } />
+        <Header />
+        <div className="container">
+          <Main>
+            <PieChart data={ data } />
+          </Main>
+        </div>
+
       </div>
     );
   }
