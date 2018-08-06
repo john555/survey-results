@@ -13,7 +13,7 @@ const skiptFile = './survey-data/skipt.txt';
 const blacklist = fs.readFileSync(skiptFile, { encoding: 'utf8' }).split('\n');
 
 const surveyData = [];
-const outputFile = path.resolve(__dirname, 'survey-data', 'survey-data.json')
+const outputFile = path.resolve(__dirname, 'src', 'survey-data.json')
 
 for (let key in responses) {
   if (!responses.hasOwnProperty(key) || blacklist.indexOf(key) > -1) {
@@ -30,9 +30,7 @@ fs.writeFileSync(outputFile, JSON.stringify(surveyData), {encoding: 'utf8'});
 //
 // [{
 //   question: '',
-//   responses: [{
-//     group: '',
-//     response: [{
+//   responses: {
 //        group: '',
 //        responses: [
 //          {
@@ -40,6 +38,5 @@ fs.writeFileSync(outputFile, JSON.stringify(surveyData), {encoding: 'utf8'});
 //            value: 0,
 //          }
 //        ],
-//     }]
 //   }]
 // }]

@@ -27,7 +27,6 @@ body {
 
 .mainHeader {
   background: white;
-  max-height: 6.5rem;
   height: var(--header-height);
   display: flex;
   align-items: center;
@@ -111,3 +110,43 @@ body {
   fill: #ddd;
 }
 
+/* Navigation */
+.navigationWrapper {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  pointer-events: none;
+}
+
+.navigationWrapper > .container {
+  display: flex;
+  justify-content: flex-end;
+}
+.navigation {
+  display: flex;
+  pointer-events: all;
+}
+
+.navigation__button {
+  background: none;
+  border: none;
+  width: 6rem;
+  height: var(--header-height);
+  transform: opacity 200ms ease-in-out;
+}
+
+.navigation__button--inactive {
+  opacity: 0.5;
+}
+
+.navigation__button + .navigation__button {
+  margin-left: 2rem;
+}
+
+.navigation__icon {
+  fill: none;
+  stroke: #888;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  height: 60%;
+}
