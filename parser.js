@@ -5,6 +5,7 @@ const _ = require('lodash');
 const { formatData } = require('./helpers');
 const questions = require('./survey-data/survey_questions.json');
 const responses = require('./survey-data/survey_responses.json');
+const summary = require('./survey-data/summary.json');
 
 const skiptFile = './survey-data/skipt.txt';
 const margedFile = './survey-data/merge.txt';
@@ -13,6 +14,8 @@ const merges = fs.readFileSync(margedFile, { encoding: 'utf8' }).split('\n');
 const outputFile = path.resolve(__dirname, 'src', 'survey-data.json');
 
 let surveyData = [];
+
+surveyData.push(summary);
 
 // merge some answers that are related
 let mergedOutput = {};
@@ -40,7 +43,7 @@ for (const key in merges) { // ['1 75 ', '']
   const qtnNumber = merge[0];
   const qtn = questions[qtnNumber].split(':')[1];
   const mergedData = formatData(qtnNumber, qtn, mergedOutput);
-  
+
   surveyData.push(mergedData)
 }
 

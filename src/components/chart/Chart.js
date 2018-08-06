@@ -35,10 +35,20 @@ class Chart extends Component {
     return a.value - b.value;
   }
 
+  getTooltipText(data) {
+    const lookup = ['Didn\'t respond', 'Responded'];
+
+    if(lookup.indexOf(data.label) > -1) {
+      return `${data.value} ${data.label}`;
+    }
+
+    return `${data.value} Response${data.value > 1 ? 's' : ''}`
+  }
+
   onChartMouseOver =(data, d) => {
     if (this.state.tooltipText.length === 0) {
       this.setState({
-        tooltipText: `${data.data.value} Response${data.data.value > 1 ? 's' : ''}`
+        tooltipText: this.getTooltipText(data.data),
       });
     }
 

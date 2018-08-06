@@ -145,7 +145,7 @@ body {
   padding: 0.5rem 1rem;
   display: flex;
   align-items: center;
-
+  text-anchor: middle;
 }
 
 .chart__label + .chart__label {
