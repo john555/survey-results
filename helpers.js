@@ -1,4 +1,4 @@
-function formatData(question, responses) {
+function formatData(questionNumber, question, responses) {
   const responsesArray = [];
   for (let key in responses) {
     responsesArray.push({
@@ -8,6 +8,7 @@ function formatData(question, responses) {
   }
 
   return {
+    questionNumber,
     question,
     responses: responsesArray
   };

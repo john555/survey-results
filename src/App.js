@@ -7,6 +7,7 @@ import Answer from './components/answer/Answer';
 import Navigation from './components/navigation/Navigation';
 
 const data = [{
+  questionNumber: 1,
   question: 'Question?',
   responses:
     [ 
@@ -83,12 +84,14 @@ class App extends Component {
             disableNextButton={this.hasReachedEnd()}
             previousButtonClick={this.prev}
             nextButtonClick={this.next}
+            total={this.state.data.length}
+            current={this.state.currentIndex + 1}
           />
           </div>
         </div>
         <div className="container">
           <Main>
-            <Question question={data.question}>
+            <Question questionNumber={data.questionNumber} question={data.question}>
               {
                 data.responses.map((response) => (
                   <Answer

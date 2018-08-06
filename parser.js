@@ -20,7 +20,7 @@ for (let key in responses) {
     continue;
   }
 
-  const d = formatData(questions[key], responses[key]);
+  const d = formatData(key, questions[key], responses[key]);
   surveyData.push(d);
 }
 
