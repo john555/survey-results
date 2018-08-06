@@ -5,11 +5,7 @@ import Question from './Question';
 describe('<Question />', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    const data = {
-      question: '',
-      answers: [],
-    };
-    ReactDOM.render(<Question data={data} />, div);
+    ReactDOM.render(<Question question="" />, div);
     ReactDOM.unmountComponentAtNode(div);
   });  
 });

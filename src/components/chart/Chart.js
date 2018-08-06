@@ -77,7 +77,11 @@ class Chart extends Component {
     .attr('transform', (d) => {
       return `translate(${labelArc.centroid(d)})`;
     })
-    .text((d) => `${d.value}%`);
+    .text((d) => {
+      const angle = d.endAngle - d.startAngle;
+      const percentage = Math.round((angle * 100)/(2 * Math.PI));
+      return `${percentage}% - ${d.data.label}`;
+    });
 
   }
 

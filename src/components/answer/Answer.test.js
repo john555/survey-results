@@ -6,7 +6,7 @@ describe('<Answer />', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     const data = [];
-    ReactDOM.render(<Answer data={data} />, div);
+    ReactDOM.render(<Answer group={''} data={data} />, div);
     ReactDOM.unmountComponentAtNode(div);
   });  
 });
