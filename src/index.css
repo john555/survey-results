@@ -172,8 +172,10 @@ body {
   display: flex;
   justify-content: flex-end;
 }
+
 .navigation {
   display: flex;
+  align-items: center;
   pointer-events: all;
 }
 
@@ -189,8 +191,10 @@ body {
   opacity: 0.5;
 }
 
-.navigation__button + .navigation__button {
-  margin-left: 2rem;
+.navigation__progress {
+  margin: 0 1rem;
+  color: #888;
+  font-size: 2rem;
 }
 
 .navigation__icon {

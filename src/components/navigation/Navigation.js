@@ -11,6 +11,7 @@ const Navigation = props => (
         <path d="M9,1 L1,10, L9,19" />
       </svg>
     </button>
+    <span className="navigation__progress">{`${props.current}/${props.total}`}</span>
     <button
       onClick={props.disableNextButton ? () => {} : props.nextButtonClick}
      className={`navigation__button ${props.disableNextButton? 'navigation__button--inactive' : ''}`}
@@ -28,6 +29,8 @@ Navigation.defaultProps = {
 };
 
 Navigation.propTypes = {
+  current: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
   disablePreviousButton: PropTypes.bool,
   disableNextButton: PropTypes.bool,
   nextButtonClick: PropTypes.func.isRequired,
