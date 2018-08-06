@@ -110,6 +110,56 @@ body {
   fill: #ddd;
 }
 
+.chart__labels {
+  padding: 2rem 0 0;
+}
+
+.chart__label {
+  padding: 0.4rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.chart__color {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.4rem;
+
+}
+
+.chart__labelText {
+  margin-left: 1rem;
+  font-size: 1.4rem;
+}
+
+.chart__tooltip {
+  display: block;
+  position: fixed;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 0.4rem;
+  border: 0.1rem solid #ddd;
+  font-size: 1.4rem;
+}
+
+.chart__tooltip:after {
+  content: '';
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute;
+  left: calc(50% - 1rem);
+  border: 0.1rem solid;
+  border-color: transparent #ddd #ddd transparent;
+  background: white;
+  transform: rotate(45deg);
+}
+
+.chart__tooltip--hidden {
+  display: none;
+}
+
 /* Navigation */
 .navigationWrapper {
   position: fixed;
