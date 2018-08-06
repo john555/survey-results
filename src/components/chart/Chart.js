@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import * as d3 from 'd3';
 
 class Chart extends Component {
-  static swatch = ['#7AA532', '#385E89', '#526561', '#A9767E', '#D19B8C', '#EDE4DA', '#EAD259', '#97B79E'];
+  static swatch = '#5d4037 #bf360c #2e7d32 #00838f #827717 #1976d2 #616161 #3949ab #37474f #5e35b1'.split(' ');
 
   static defaultProps = {
     swatch: Chart.swatch,
@@ -58,14 +58,10 @@ class Chart extends Component {
 
     this.tooltip.current.style['left'] = `${x}px`;
     this.tooltip.current.style['top'] = `${y}px`;
-
-    
-
-    
   }
 
   onChartMouseLeave = () => {
-    this.setState({tooltipText: ''})
+    this.setState({tooltipText: ''});
   }
 
   drawChart() {
