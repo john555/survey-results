@@ -37,18 +37,20 @@ class Chart extends Component {
 
   getTooltipText(data) {
     const lookup = ['Didn\'t respond', 'Responded'];
+    const angle = data.endAngle - data.startAngle;
+    const percentage = Math.round((angle * 100)/(2 * Math.PI));
 
-    if(lookup.indexOf(data.label) > -1) {
-      return `${data.value} ${data.label}`;
+    if(lookup.indexOf(data.data.label) > -1) {
+      return `${percentage}% • ${data.data.value} ${data.data.label}`;
     }
 
-    return `${data.value} Response${data.value > 1 ? 's' : ''}`
+    return `${percentage}% • ${data.data.value} Response${data.data.value > 1 ? 's' : ''}`
   }
 
   onChartMouseOver =(data, d) => {
     if (this.state.tooltipText.length === 0) {
       this.setState({
-        tooltipText: this.getTooltipText(data.data),
+        tooltipText: this.getTooltipText(data),
       });
     }
 
