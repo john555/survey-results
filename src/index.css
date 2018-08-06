@@ -132,6 +132,14 @@ body {
   stroke: #fff;
 }
 
+.chart__arc path {
+  transition: opacity 200ms ease-in-out;
+}
+
+.chart__arc:hover path {
+  opacity: 0.75;
+}
+
 .chart__label {
   stroke: none;
   fill: #ddd;
