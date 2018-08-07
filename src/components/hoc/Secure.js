@@ -35,14 +35,11 @@ const Secure = (ChildComponent) => {
       .then(response => {
         const { status, token } = response.data;
 
-        if (status) {
-          this.setState(prevState => ({
-            ...prevState,
-            isLoggedIn: status,
-            loginError: !status,
-            isLoggingIn: false
-          }));
-        }
+        this.setState(prevState => ({
+          ...prevState,
+          isLoggedIn: status,
+          isLoggingIn: false
+        }));
 
         this.saveToken(token);
       });
@@ -71,7 +68,7 @@ const Secure = (ChildComponent) => {
 
     handleSubmit = event => {
       event.preventDefault();
-      
+
       if (this.state.isLoggingIn) {
         return;
       }
