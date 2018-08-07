@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import RequireLogin from './components/hoc/Secure';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const SecureApp = RequireLogin(App);
+
+ReactDOM.render(<SecureApp />, document.getElementById('root'));
 
