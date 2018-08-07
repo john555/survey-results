@@ -38,6 +38,7 @@ body {
   width: 100%;
   box-shadow: 0 0 2rem rgba(0, 0, 0, 0.05);
   border-bottom: 0.1rem;
+  z-index: 2;
 }
 
 .mainHeader__title {
@@ -258,6 +259,7 @@ body {
   top: 0;
   width: 100%;
   pointer-events: none;
+  z-index: 4;
 }
 
 .navigationWrapper > .container {
@@ -384,6 +386,13 @@ body {
 .login__button {
   padding: 1.5rem 2rem;
   font-size: inherit;
+  user-select: none;
+}
+
+.login__input:disabled,
+.login__button:disabled {
+  opacity: 0.8;
+  pointer-events: none;
 }
 
 .login__input {

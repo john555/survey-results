@@ -69,7 +69,13 @@ const Secure = (ChildComponent) => {
       }));
     }
 
-    handleClick = () => {
+    handleSubmit = event => {
+      event.preventDefault();
+      
+      if (this.state.isLoggingIn) {
+        return;
+      }
+
       if (this.state.password.trim() === '') {
         this.setState(prevState => ({
           ...prevState,
@@ -150,7 +156,10 @@ const Secure = (ChildComponent) => {
       
       return (
         <div className="loginPage">
-          <div className={`login ${this.state.isLoggingIn ? 'login--active' : ''}`}>
+          <form 
+            className={`login ${this.state.isLoggingIn ? 'login--active' : ''}`}
+            onSubmit={this.handleSubmit}
+          >
             <h1 className="login__title">Password</h1>
             <div className="login__group">
               <input
@@ -160,19 +169,24 @@ const Secure = (ChildComponent) => {
                 value={this.state.password}
                 onFocus={this.handleFocus}
                 onChange={this.handleChange}
+                disabled={ this.state.isLoggingIn }
               />
             </div>
 
             { this.renderErrorMessage() }
 
             <div className="login__group login__group--buttonGroup">
-              <button className="login__button" onClick={this.handleClick}>
+              <button
+                className="login__button"
+                onClick={this.handleSubmit}
+                disabled={ this.state.isLoggingIn }
+              >
                 {
                   this.state.isLoggingIn ? 'Signing in...' : 'Sign in'
                 }
               </button>
             </div>
-          </div>
+          </form>
         </div>
       );
     }
