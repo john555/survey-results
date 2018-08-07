@@ -2,11 +2,9 @@ const path = require('path');
 const bcrypt = require('bcrypt');
 const fs = require('fs');
 
-const config = require('./src/config');
+const { outputFile } = require('./server.config');
 
-const saltRounds = 17;
-
-const outputFile = path.resolve(__dirname, 'public', config.HASH_FILE_NAME);
+const saltRounds = 10;
 
 function generatePassword() {
 
@@ -19,6 +17,8 @@ function generatePassword() {
   if (!password || password === '') {
     throw new Error('You must provide password');
   }
+
+  console.log('\nGenerating hash..... \n');
 
   bcrypt.genSalt(saltRounds, (error, salt) => {
     if (error) {
