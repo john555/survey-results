@@ -11,7 +11,7 @@ const skiptFile = './survey-data/skipt.txt';
 const margedFile = './survey-data/merge.txt';
 const blacklist = fs.readFileSync(skiptFile, { encoding: 'utf8' }).split('\n');
 const merges = fs.readFileSync(margedFile, { encoding: 'utf8' }).split('\n');
-const outputFile = path.resolve(__dirname, 'src', 'survey-data.json');
+const outputFile = path.resolve(__dirname, 'public', 'survey-data.json');
 
 let surveyData = [];
 
@@ -21,7 +21,7 @@ surveyData.push(summary);
 let mergedOutput = {};
 
 for (const key in merges) { // ['1 75 ', '']
-    
+
   const merge = merges[key].split(' ');
 
   // empty line
@@ -64,6 +64,7 @@ fs.writeFileSync(outputFile, JSON.stringify(surveyData), {encoding: 'utf8'});
 // Defn: surveyData
 //
 // [{
+//   questionNumber: 0,
 //   question: '',
 //   responses: {
 //        group: '',

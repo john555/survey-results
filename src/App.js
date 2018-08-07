@@ -1,48 +1,31 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import Header from './containers/Header';
 import Main from './containers/Main';
 import Question from './components/question/Question';
 import Answer from './components/answer/Answer';
 import Navigation from './components/navigation/Navigation';
-
-const data = [{
-  questionNumber: 1,
-  question: 'Question?',
-  responses:
-    [ 
-      { 
-        group: 'Group', 
-        responses: [
-        {
-          label: 'Extremely well',
-          value: 5,
-        },
-        {
-          label: 'Moderately well',
-          value: 7,
-        },
-        {
-          label: 'Slightly well',
-          value: 2,
-        },
-        {
-          label: 'Very well',
-          value: 33,
-        },
-        ] 
-    },
-  ]
-}];
-
+import config from './config';
+import QuestionPlaceholder from './components/question/QuestionPlaceholder';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data,
+      data: [],
       currentIndex: 0,
     }
+  }
+
+  componentDidMount() {
+    axios.get(config.SURVEY_DATA_URL)
+    .then(response => {
+      this.setState(prevState => ({
+        ...prevState,
+        data: response.data,
+      }));
+    });
   }
 
   prev = () => {
@@ -72,13 +55,14 @@ class App extends Component {
     return (this.state.data.length - 1) === this.state.currentIndex;
   }
 
-  render() {
-    const data = this.state.data[this.state.currentIndex];
+  renderNavigation() {
+    if(this.state.data.length === 0) {
+      return;
+    }
+
     return (
-      <div className="App">
-        <Header />
-        <div className="navigationWrapper">
-          <div className="container">
+      <div className="navigationWrapper">
+        <div className="container">
           <Navigation
             disablePreviousButton={this.hasReacheStart()}
             disableNextButton={this.hasReachedEnd()}
@@ -87,21 +71,42 @@ class App extends Component {
             total={this.state.data.length}
             current={this.state.currentIndex + 1}
           />
-          </div>
         </div>
+      </div>
+    );
+  }
+
+  renderQuestion() {
+    if(this.state.data.length === 0) {
+      return <QuestionPlaceholder />;
+    }
+
+    const data = this.state.data[this.state.currentIndex];
+
+    return (
+      <Question questionNumber={data.questionNumber} question={data.question}>
+        {
+          data.responses.map((response) => (
+            <Answer
+              key={Math.random()}
+              group={response.group}
+              data={response.responses}
+            />
+          ))
+        }
+      </Question>
+    );
+  }
+
+  render() {
+    
+    return (
+      <div className="App">
+        <Header />
+        {this.renderNavigation()}
         <div className="container">
           <Main>
-            <Question questionNumber={data.questionNumber} question={data.question}>
-              {
-                data.responses.map((response) => (
-                  <Answer
-                    key={Math.random()}
-                    group={response.group}
-                    data={response.responses}
-                  />
-                ))
-              }
-            </Question>
+            {this.renderQuestion()}
           </Main>
         </div>
       </div>

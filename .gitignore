@@ -22,3 +22,4 @@ yarn-error.log*
 
 /survey-data/*.json
 /survey-data/*.txt
+/public/survey-*
