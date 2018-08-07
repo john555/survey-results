@@ -23,6 +23,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "generate": "node parser.js",
-    "make:password": "node generate-password.js"
+    "make:password": "node generate-password.js",
+    "start:auth": "node server.js"
   }
 }
