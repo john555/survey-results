@@ -10,7 +10,7 @@ const config = {
   passwordStorageFile,
   secret,
   port,
-  loginDuration: 3600,
+  loginDuration: 60 * 15,
 };
 
 if (env === 'production') {
