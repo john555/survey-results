@@ -74,7 +74,7 @@ app.post('/verify', (request, response) => {
     
     return response.send({
       status: true,
-      token: generateToken(),
+      token,
     });
   });
   
