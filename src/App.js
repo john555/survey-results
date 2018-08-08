@@ -8,6 +8,7 @@ import Answer from './components/answer/Answer';
 import Navigation from './components/navigation/Navigation';
 import config from './config';
 import QuestionPlaceholder from './components/question/QuestionPlaceholder';
+import { retrieveToken } from './helpers/token';
 
 class App extends Component {
   constructor(props) {
@@ -19,15 +20,28 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get(config.SURVEY_DATA_URL)
+    this.fetchData();
+
+    document.body.onkeydown = this.bindKeyboardEvents;
+  }
+
+  fetchData = () => {
+    const token = retrieveToken();
+
+    if (token === '') {
+      window.location = '/';
+    }
+
+    axios.get(`${config.API_URL}/data`, { headers: { token }})
     .then(response => {
       this.setState(prevState => ({
         ...prevState,
-        data: response.data,
+        data: response.data.data,
       }));
+    })
+    .catch(() => {
+      window.location = '/';
     });
-
-    document.body.onkeydown = this.bindKeyboardEvents;
   }
 
   bindKeyboardEvents = event => {

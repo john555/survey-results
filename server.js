@@ -4,6 +4,7 @@ const fs = require('fs');
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -12,16 +13,26 @@ const hash = require(passwordStorageFile);
 
 const app = express();
 
+app.use(morgan('tiny'));
 app.use(cors());
 app.use(bodyParser.json());
 
-if (env === 'production') {
-  app.use(express.static(path.resolve(__dirname, 'build')));
-  
-  app.get('*', (request, response) => {
-    return response.sendFile(indexFile);
+app.get('/data', (request, response) => {
+  const { token } = request.headers;
+  jwt.verify(token, secret, (error) => {
+    if (error) {
+      return response.send({
+        status: false,
+        data: null,
+      }, 401);
+    }
+    
+    return response.send({
+      status: true,
+      data: require(path.resolve(__dirname, 'survey-data', 'survey-data.json')),
+    });
   });
-}
+});
 
 app.post('/login', (request, response) => {
   const { password } = request.body;
@@ -64,7 +75,7 @@ app.post('/verify', (request, response) => {
   }
 
 
-  jwt.verify(token, secret, (error, decoded) => {
+  jwt.verify(token, secret, (error) => {
     if (error) {
       return response.send({
         status: false,
@@ -79,6 +90,14 @@ app.post('/verify', (request, response) => {
   });
   
 });
+
+if (env === 'production') {
+  app.use(express.static(path.resolve(__dirname, 'build')));
+  
+  app.get('*', (request, response) => {
+    return response.sendFile(indexFile);
+  });
+}
 
 function generateToken() {
   return jwt.sign({
@@ -119,5 +138,5 @@ function onServerError (error) {
 }
 
 checkServer()
-.then(startServer)
-.catch(onServerError);
+  .then(startServer)
+  .catch(onServerError);

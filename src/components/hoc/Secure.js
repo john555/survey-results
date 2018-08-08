@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import config from '../../config';
+import { retrieveToken, saveToken } from '../../helpers/token';
 
 const Secure = (ChildComponent) => {
 
@@ -21,7 +22,7 @@ const Secure = (ChildComponent) => {
     }
 
     checkLogin() {
-      const token = this.retrieveToken();
+      const token = retrieveToken();
       if (this.state.isLoggingIn || token === '') {
         return;
       }
@@ -31,7 +32,7 @@ const Secure = (ChildComponent) => {
         isLoggingIn: true,
       }));
       
-      axios.post(`${config.LOGIN_URL}/verify`, { token })
+      axios.post(`${config.API_URL}/verify`, { token })
       .then(response => {
         const { status, token } = response.data;
 
@@ -41,29 +42,8 @@ const Secure = (ChildComponent) => {
           isLoggingIn: false
         }));
 
-        this.saveToken(token);
+        saveToken(token);
       });
-    }
-
-    retrieveToken = () => {
-      const sessionString = localStorage.getItem('token');
-
-      if (!sessionString) {
-        return "";
-      }
-
-      try {
-        const { token } = JSON.parse(sessionString);
-        return token;
-      } catch (error) {
-        return "";
-      }
-    }
-    
-    saveToken = token => {
-      localStorage.setItem('token', JSON.stringify({
-        token,
-      }));
     }
 
     handleSubmit = event => {
@@ -86,12 +66,12 @@ const Secure = (ChildComponent) => {
         isLoggingIn: true,
       }));
 
-      axios.post(`${config.LOGIN_URL}/login`, { password: this.state.password })
+      axios.post(`${config.API_URL}/login`, { password: this.state.password })
       .then(response => {
         const { status, token } = response.data;
 
         if (status) {
-          this.saveToken(token);
+          saveToken(token);
         }
 
         this.setState(prevState => ({
