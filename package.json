@@ -24,6 +24,7 @@
     "eject": "react-scripts eject",
     "generate": "node parser.js",
     "make:password": "node generate-password.js",
-    "start:auth": "node server.js"
+    "start:auth": "node server.js",
+    "start:prod": "npm run build && npm run start:auth"
   }
 }

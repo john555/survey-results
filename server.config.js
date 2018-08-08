@@ -13,4 +13,8 @@ const config = {
   loginDuration: 3600,
 };
 
+if (env === 'production') {
+  config.indexFile =  path.resolve(__dirname, 'build', 'index.html');
+}
+
 module.exports = config;

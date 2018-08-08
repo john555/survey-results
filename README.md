@@ -39,8 +39,9 @@ You __MUST__ enclose the password with double or single quotes.
 ```
 NODE_ENV=<development|production> SECRET=<secret-key> yarn start:auth
 ```
+If you are running the app in development mode, set NODE_ENV to `development`. The default environment is `production`.
 
-### Start the server.
+### Start the app server in development mode.
 ```
 yarn start
 ```
@@ -49,4 +50,10 @@ yarn start
 
 ```
 yarn test
+```
+
+### How to deploy.
+Run:
+```
+SECRET=<secrete-key> yarn start:prod
 ```
