@@ -6,13 +6,10 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const { outputFile } = require('./server.config');
-const hash = require(outputFile);
+const { passwordStorageFile, env, secret, port, loginDuration } = require('./server.config');
+const hash = require(passwordStorageFile);
 
-const env = process.env.NODE_ENV || 'production';
 const app = express();
-const PORT = process.env.PORT || 3001;
-const secret = process.env.SECRET;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -84,10 +81,10 @@ app.post('/verify', (request, response) => {
 
 function generateToken() {
   return jwt.sign({
-    exp: Math.floor(Date.now() / 1000) + (60 * 60),
+    exp: Math.floor(Date.now() / 1000) + loginDuration,
   }, secret);
 }
 
-app.listen(PORT, () => {
-  console.log(`Server started at http://localhost:${PORT}`);
+app.listen(port, () => {
+  console.log(`Server started at http://localhost:${port}`);
 });

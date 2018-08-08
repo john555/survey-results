@@ -2,7 +2,7 @@ const path = require('path');
 const bcrypt = require('bcrypt');
 const fs = require('fs');
 
-const { outputFile } = require('./server.config');
+const { passwordStorageFile } = require('./server.config');
 
 const saltRounds = 10;
 
@@ -33,7 +33,7 @@ function generatePassword() {
       const contents = JSON.stringify({
         value: hash
       });
-      fs.writeFileSync(outputFile, contents, { encoding: 'utf8'});
+      fs.writeFileSync(passwordStorageFile, contents, { encoding: 'utf8'});
     });
   });
 }
