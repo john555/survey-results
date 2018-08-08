@@ -26,6 +26,18 @@ class App extends Component {
         data: response.data,
       }));
     });
+
+    document.body.onkeydown = this.bindKeyboardEvents;
+  }
+
+  bindKeyboardEvents = event => {
+    if (event.keyCode === 37) {
+      this.prev();
+    }
+
+    if (event.keyCode === 39) {
+      this.next();
+    }
   }
 
   prev = () => {
